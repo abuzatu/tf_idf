@@ -66,8 +66,7 @@ def process_corpus(corpus):
         # loop over documents
         dict_word_w = {}
         dict_word_TF = dict_sentence_name_dict_word_TF[sentence_name]
-        # print(f"dict_word_TF, len={len(dict_word_TF)}")
-        # print(dict_word_TF,)
+        logging.debug(f"dict_word_TF, len={len(dict_word_TF)}")
         L = dict_sentence_name_number_word[sentence_name]
         if L == 0:
             dict_document_dict_word_w[sentence_name] = None 
@@ -78,10 +77,10 @@ def process_corpus(corpus):
                 DF = dict_word_DF[word]
                 N_DF = N / DF
                 w = TF * math.log(N_DF)
-                # print(f"word={word}, C={C}, L={L}, TF={TF}, DF={DF}, N={N}, N_DF={N_DF}, w = {w}")
+                logging.debug(f"word={word}, C={C}, L={L}, TF={TF}, DF={DF}, N={N}, N_DF={N_DF}, w = {w}")
                 dict_word_w[word] = w
             dict_document_dict_word_w[sentence_name] = dict_word_w
 
-    print(json.dumps(dict_document_dict_word_w, indent = 2), end = "")
+    logging.info(json.dumps(dict_document_dict_word_w, indent = 2))
 
     return 0
